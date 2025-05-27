@@ -1,28 +1,58 @@
-import React from 'react';
-import * as LucideIcons from 'lucide-react';
-import { LucideProps } from 'lucide-react';
+import React from "react";
+import {
+  GraduationCap,
+  Search,
+  Menu,
+  Play,
+  FileText,
+  Presentation,
+  File,
+  Star,
+  Eye,
+  Twitter,
+  Github,
+  Mail,
+  Filter,
+  Grid,
+  List,
+} from "lucide-react";
 
-interface IconProps extends LucideProps {
+interface IconProps {
   name: string;
+  size?: number;
+  className?: string;
   fallback?: string;
 }
 
-const Icon: React.FC<IconProps> = ({ name, fallback = 'CircleAlert', ...props }) => {
-  const IconComponent = (LucideIcons as Record<string, React.FC<LucideProps>>)[name];
+const iconMap = {
+  GraduationCap,
+  Search,
+  Menu,
+  Play,
+  FileText,
+  Presentation,
+  File,
+  Star,
+  Eye,
+  Twitter,
+  Github,
+  Mail,
+  Filter,
+  Grid,
+  List,
+};
 
-  if (!IconComponent) {
-    // Если иконка не найдена, используем fallback иконку
-    const FallbackIcon = (LucideIcons as Record<string, React.FC<LucideProps>>)[fallback];
+const Icon: React.FC<IconProps> = ({
+  name,
+  size = 24,
+  className = "",
+  fallback = "File",
+}) => {
+  const IconComponent =
+    iconMap[name as keyof typeof iconMap] ||
+    iconMap[fallback as keyof typeof iconMap];
 
-    // Если даже fallback не найден, возвращаем пустой span
-    if (!FallbackIcon) {
-      return <span className="text-xs text-gray-400">[icon]</span>;
-    }
-
-    return <FallbackIcon {...props} />;
-  }
-
-  return <IconComponent {...props} />;
+  return <IconComponent size={size} className={className} />;
 };
 
 export default Icon;
