@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import AuthDialog from "@/components/AuthDialog";
+import UploadLectureDialog from "@/components/UploadLectureDialog";
 
 const Header = () => {
   return (
@@ -41,10 +43,23 @@ const Header = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm" className="hidden md:flex">
-            Войти
-          </Button>
-          <Button size="sm">Регистрация</Button>
+          <UploadLectureDialog>
+            <Button variant="ghost" size="sm" className="hidden md:flex">
+              <Icon name="Plus" size={16} className="mr-2" />
+              Загрузить
+            </Button>
+          </UploadLectureDialog>
+
+          <AuthDialog>
+            <Button variant="ghost" size="sm" className="hidden md:flex">
+              Войти
+            </Button>
+          </AuthDialog>
+
+          <AuthDialog>
+            <Button size="sm">Регистрация</Button>
+          </AuthDialog>
+
           <Button variant="ghost" size="icon" className="md:hidden">
             <Icon name="Menu" size={20} />
           </Button>
